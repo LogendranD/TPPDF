@@ -99,7 +99,7 @@ public class PDFSectionColumn: PDFDocumentObject {
     - parameter spacing: Horizontal distance between images
     */
     public func add(_ container: PDFSectionColumnContainer = PDFSectionColumnContainer.left, imagesInRow images: [PDFImage], spacing: CGFloat = 5.0) {
-        objects += [(container, PDFImageRowObject(images: images, spacing: spacing))]
+        objects += [(container, PDFImageRowObject(images: images, itemsPerRow: images.count, spacing: spacing))]
     }
 
     // MARK: - Text

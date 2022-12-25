@@ -64,7 +64,24 @@ public extension PDFGroup {
      - parameter spacing: Horizontal distance between images
      */
     func add(_ container: PDFGroupContainer = PDFGroupContainer.left, imagesInRow: [PDFImage], spacing: CGFloat = 5.0) {
-        objects += [(container, PDFImageRowObject(images: imagesInRow, spacing: spacing))]
+        objects += [(container, PDFImageRowObject(images: imagesInRow, itemsPerRow: imagesInRow.count, spacing: spacing))]
+    }
+
+    /**
+     Adds an image row to the given container.
+     This image row will fill the full available width between left indentation and right indentation.
+
+     - parameter container: Container where the space will be set, defaults to `PDFGroupContainer.left`
+     - parameter images: Array of images, from left to right
+     - parameter spacing: Horizontal distance between images
+     */
+    func add(_ container: PDFGroupContainer = PDFGroupContainer.left,
+             imagesInRow: [PDFImage],
+             itemsPerRow: Int,
+             spacing: CGFloat = 5.0) {
+        objects += [(container, PDFImageRowObject(images: imagesInRow,
+                                                  itemsPerRow: itemsPerRow,
+                                                  spacing: spacing))]
     }
 
     // MARK: - Text

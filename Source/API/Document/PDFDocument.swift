@@ -121,7 +121,24 @@ public class PDFDocument: CustomStringConvertible {
      - parameter spacing: Horizontal distance between images
      */
     public func add(_ container: PDFContainer = PDFContainer.contentLeft, imagesInRow images: [PDFImage], spacing: CGFloat = 5.0) {
-        objects += [(container, PDFImageRowObject(images: images, spacing: spacing))]
+        objects += [(container, PDFImageRowObject(images: images, itemsPerRow: images.count, spacing: spacing))]
+    }
+
+    /**
+     Adds an image row to the given container.
+     This image row will fill the full available width between left indentation and right indentation.
+
+     - parameter container: Container where the space will be set, defaults to `PDFContainer.contentLeft`
+     - parameter images: Array of images, from left to right
+     - parameter spacing: Horizontal distance between images
+     */
+    public func add(_ container: PDFContainer = PDFContainer.contentLeft,
+                    imagesInRow images: [PDFImage],
+                    itemsPerRow : Int,
+                    spacing: CGFloat = 5.0) {
+        objects += [(container, PDFImageRowObject(images: images,
+                                                  itemsPerRow: itemsPerRow,
+                                                  spacing: spacing))]
     }
 
     // MARK: Text
