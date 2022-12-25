@@ -31,10 +31,12 @@ internal class PDFImageRowObject: PDFRenderObject {
      */
     internal var captionSpacing: CGFloat
 
+    internal var imagesPerRow: Int
+
     /**
      TODO: documentation
      */
-    internal init(images: [PDFImage], spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
+    internal init(images: [PDFImage], imagesPerRow: Int, spacing: CGFloat = 1.0, captionSpacing: CGFloat = 5.0) {
         self.images = images
         self.spacing = spacing
         self.captionSpacing = captionSpacing
@@ -54,7 +56,7 @@ internal class PDFImageRowObject: PDFRenderObject {
 
         let availableSize = PDFCalculations.calculateAvailableFrame(for: generator, in: container)
         let totalSpacing = CGFloat(images.count - 1) * spacing
-        let imageWidth = (availableSize.width - totalSpacing) / CGFloat(images.count)
+        let imageWidth = (availableSize.width - totalSpacing) / CGFloat(imagesPerRow)
 
         var maxHeight: CGFloat = 0
 
