@@ -348,4 +348,9 @@ public class PDFDocument: CustomStringConvertible {
         objects += [(.none, PDFExternalDocumentObject(url: doc.url,
                                                       pages: doc.pages))]
     }
+
+    //Remove last page
+    public func removeLastPage() {
+        objects.removeLast()
+    }
 }
